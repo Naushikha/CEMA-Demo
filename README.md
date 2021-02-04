@@ -1,4 +1,4 @@
-# CEMA-Demo
+# Simulating Correlation Electromagnetic/Power Analysis (CEMA/CPA)
 
 1. Preparing the environment.
 
