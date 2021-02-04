@@ -76,7 +76,7 @@ def getHypoMatrices(plainTexts, keyLengthInBytes):
     return H_all
 
 
-def genEMTraces(realKey, plainTexts, traceDuration):
+def genEMTraces(realKey, plainTexts, traceDuration, noiseLevel):
     '''
     This function takes the real key, plaintext matrix and trace duration as input
     in order to generate EM trace matrix for testing purposes.
@@ -85,7 +85,9 @@ def genEMTraces(realKey, plainTexts, traceDuration):
     #T = np.zeros(shape=(traceDuration, len(plainTexts)), dtype=int)
     #T = np.ones(shape=(traceDuration, len(plainTexts)), dtype=int)
     #T = np.random.randint(2, size=(traceDuration, len(plainTexts)))
-    T = np.random.randint(10, size=(traceDuration, len(plainTexts)))
+    #T = np.random.randint(10, size=(traceDuration, len(plainTexts)))
+    
+    T = np.random.randint(noiseLevel, size=(traceDuration, len(plainTexts)))
 
     for i in range(len(plainTexts)):
         for j in range(len(realKey)):
@@ -138,7 +140,8 @@ def recoverKey(hypoMatrixAll, traceMatrix, keyLengthInBytes):
         (keyByte, timeIndex) = np.unravel_index(C.argmax(), C.shape)
         key = np.append(key, keyByte)
         
-    return key
+    #return key
+    return key.astype(int)
 
 ###############################################################################
 #           Depreciated functions                                             #
